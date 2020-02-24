@@ -1,0 +1,12 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /mogi
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/mogi
+    username: postgres
+    password: 123
+  jpa:
+    generate-ddl: true
