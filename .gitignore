@@ -1,2 +1,7 @@
 
 *.class
+mogi-justo/mogi-justo-model/.classpath
+mogi-justo/mogi-justo-repository/.classpath
+mogi-justo/mogi-justo-robo/.classpath
+mogi-justo/mogi-justo-service/.classpath
+mogi-justo/mogi-justo-api/src/main/resources/application.yml

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,12 +28,14 @@ import br.com.mogi.justo.service.TesteService;
 public class TesteController {
 	@Autowired
 	private TesteService service;
-
+	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(consumes = { APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<List<Teste>> pegar() {
 		return new ResponseEntity<>(service.findAll(), OK);
 	} 
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "/{id}", consumes = { APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<Teste> pegarUm(@PathVariable Integer id) {
 		return new ResponseEntity<>(service.findById(id), OK); 
