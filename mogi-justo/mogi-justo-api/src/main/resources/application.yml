@@ -7,6 +7,6 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/mogi
     username: postgres
-    password: 123Fatec
+    password: p0k3m0n
   jpa:
     generate-ddl: true
