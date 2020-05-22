@@ -1,3 +1,7 @@
+logging:
+  level:
+    ROOT: DEBUG
+
 server:
   port: 8000
   servlet:
@@ -7,6 +11,11 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/mogi
     username: postgres
-    password: 123Fatec
+    password: root
   jpa:
     generate-ddl: true
+    
+    logging:
+  level:
+    ROOT: DEBUG
+    
