@@ -13,30 +13,41 @@ public class Servidor {
 	
 	@Id
 	private String rgf;
+	
 	private String nome;
+	
 	private String cargo;
+	
 	private String rendimentos;
+	
 	public String getRgf() {
 		return rgf;
 	}
+	
 	public void setRgf(String rgf) {
 		this.rgf = rgf;
 	}
+	
 	public String getNome() {
 		return nome;
 	}
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
 	public String getCargo() {
 		return cargo;
 	}
+	
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
+	
 	public String getRendimentos() {
 		return rendimentos;
 	}
+	
 	public void setRendimentos(String rendimentos) {
 		this.rendimentos = rendimentos;
 	}

@@ -10,6 +10,16 @@ import java.util.List;
 public class Funcionario {
 	
 	private List<Servidor> servidores;
+	
+	private String referencia;
+
+	public String getReferencia() {
+		return referencia;
+	}
+
+	public void setReferencia(String referencia) {
+		this.referencia = referencia;
+	}
 
 	public List<Servidor> getServidores() {
 		return servidores;
