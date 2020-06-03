@@ -24,6 +24,7 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<start-class>br.com.mogi.justo.init.Application</start-class>
 	</properties>
 
 	<dependencies>
