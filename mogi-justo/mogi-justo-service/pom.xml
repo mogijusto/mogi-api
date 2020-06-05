@@ -11,14 +11,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>br.com.mogi.justo</groupId>
-			<artifactId>mogi-justo-model</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>br.com.mogi.justo</groupId>
 			<artifactId>mogi-justo-repository</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
 	</dependencies>
 </project>
