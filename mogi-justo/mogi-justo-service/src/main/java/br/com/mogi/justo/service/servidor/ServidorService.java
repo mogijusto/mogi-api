@@ -30,4 +30,8 @@ public class ServidorService {
 		return repository.findAll();
 	}
 	
+	public void saveAll(List<Servidor> servidores) {
+		repository.saveAll(servidores);
+	}
+	
 }

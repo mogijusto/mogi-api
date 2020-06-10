@@ -23,9 +23,6 @@ import br.com.mogi.justo.model.Servidor;
 @Component
 public class PortalTransparenciaMC {
 	
-	// Exemplo de consulta para um servidor
-//	private static final String EXEMPLO = "http://www.licitacao.pmmc.com.br/Transparencia/detalhamento?rgf=19675";
-	
 	private static final String URL_SERVIDORES = "http://www.licitacao.pmmc.com.br/Transparencia/vencimentos2";
 	
 	private static final String URL_SERVIDOR = "http://www.licitacao.pmmc.com.br/Transparencia/detalhamento?rgf=";
@@ -41,33 +38,19 @@ public class PortalTransparenciaMC {
 	}
 	
 	public static void main(String[] args) {
-		
 		PortalTransparenciaMC ptmc = new PortalTransparenciaMC();
-		
-//		ptmc.consultarServidor(19675);
-		
 		ptmc.consultarServidores();
-		
 	}
 	
-	private void consultarServidores() {
-		
+	public List<Servidor> consultarServidores() {
 		String s = getServidores(URL_SERVIDORES);
-		
 		Funcionario f = new Gson().fromJson(s, Funcionario.class);
-		
-		System.out.println("Funcionário: " + f);
-		System.out.println("Nome do primeiro:" + f.getServidores().get(0).getNome());
-		f.getServidores().stream().forEach(System.out::println);
+		return f.getServidores();
 	}
 	
 	private void consultarServidor(int rgf) {
-
 		String str = getServidores(URL_SERVIDOR + rgf);
-
 		Servidor s = new Gson().fromJson(str, Servidor.class);
-
-		System.out.println("Servidor: " + s);
 	}
 	
 	public String getServidores(String uri) {
@@ -92,5 +75,4 @@ public class PortalTransparenciaMC {
 		messageConverters.add(converter);
 		rest.setMessageConverters(messageConverters);
 	}
-	
 }
