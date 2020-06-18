@@ -9,7 +9,7 @@ import javax.persistence.Converter;
 @Converter
 public class RendimentosConverter implements AttributeConverter<String, BigDecimal> {
 
-	private static final DecimalFormat BRL = new DecimalFormat("###,###.###");
+	private static final DecimalFormat BRL = new DecimalFormat("###,###.00");
 	
 	@Override
 	public BigDecimal convertToDatabaseColumn(String rendimentos) {
