@@ -5,20 +5,37 @@ import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCod
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 import static org.apache.commons.lang3.builder.ToStringStyle.JSON_STYLE;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import br.com.mogi.justo.converter.servidor.RendimentosConverter;
 
 @Entity
 public class Servidor {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
 	private String rgf;
 	
 	private String nome;
 	
 	private String cargo;
 	
+	@Convert(converter = RendimentosConverter.class)
 	private String rendimentos;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 	public String getRgf() {
 		return rgf;

@@ -18,8 +18,8 @@ public class ServidorService {
 		repository.save(servidor);
 	}
 
-	public Servidor findById(String rgf) {
-		return repository.findById(rgf).orElse(null);
+	public Servidor findById(Long id) {
+		return repository.findById(id).orElse(null);
 	}
 
 	public void delete(Servidor servidor) {

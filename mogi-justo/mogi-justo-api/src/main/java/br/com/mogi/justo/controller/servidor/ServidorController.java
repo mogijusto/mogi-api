@@ -42,7 +42,7 @@ public class ServidorController {
 
 	@CrossOrigin(origins = "http://localhost:8000")
 	@GetMapping(value = "/{id}", consumes = { APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<Servidor> getOne(@PathVariable String id) {
+	public ResponseEntity<Servidor> getOne(@PathVariable Long id) {
 		return new ResponseEntity<>(service.findById(id), OK); 
 	} 
 
@@ -51,9 +51,6 @@ public class ServidorController {
 	public ResponseEntity<Void> save(@RequestBody(required = false) Servidor servidor) {
 		List<Servidor> servidores = ptmc.consultarServidores();
 		service.saveAll(servidores);
-		
-		System.out.println(servidor);
-		service.saveOrUpdate(servidor);
 		return new ResponseEntity<>(CREATED);
 	}
 
@@ -69,7 +66,7 @@ public class ServidorController {
 
 	@DeleteMapping(value = "/{id}", produces = { APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE }, consumes = {
 			APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE })
-	public ResponseEntity<Void> delete(@PathVariable String id) {
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		Servidor servidor = service.findById(id);
 		service.delete(servidor);
 		return new ResponseEntity<>(OK);
