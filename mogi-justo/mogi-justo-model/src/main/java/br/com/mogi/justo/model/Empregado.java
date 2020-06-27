@@ -14,24 +14,26 @@ public class Empregado {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String referencia;
-	
+
 	private String cargo;
-	
+
 	private String nome;
-	
+
 	private String regime;
-	
+
+	private String rgf;
+
 	@OneToMany
 	private List<Rendimento> rendimentos;
-	
+
 	@OneToMany
 	private List<Desconto> descontos;
-	
+
 	@OneToMany
 	private List<Total> totais;
-	
+
 	@OneToMany
 	private List<Outro> outros;
 
@@ -99,4 +101,15 @@ public class Empregado {
 		this.outros = outros;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setRgf(String rgf) {
+		this.rgf = rgf;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }
