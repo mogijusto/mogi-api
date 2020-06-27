@@ -47,6 +47,6 @@ public class Funcionario {
 		if (obj.getClass() != this.getClass()) {
 			return false;
 		}
-		return reflectionEquals(this, (Teste) obj);
+		return reflectionEquals(this, (Funcionario) obj);
 	}
 }

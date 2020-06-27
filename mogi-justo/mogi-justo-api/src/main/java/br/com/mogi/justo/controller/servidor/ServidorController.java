@@ -5,7 +5,9 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,18 +29,18 @@ import br.com.mogi.justo.service.servidor.ServidorService;
 @Controller
 @RequestMapping("/servidores")
 public class ServidorController {
-	
+
 	@Autowired
 	private ServidorService service;
-	
+
 	@Autowired
 	private PortalTransparenciaMC ptmc;
-	
+
 	@CrossOrigin(origins = "http://localhost:8000")
 	@GetMapping(consumes = { APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<List<Servidor>> getAll() {
-		return new ResponseEntity<>(service.findAll(), OK);
-	} 
+		return new ResponseEntity<>(service.findAllLimit100First().stream().distinct().limit(100).collect(Collectors.toList()), OK);
+	}
 
 	@CrossOrigin(origins = "http://localhost:8000")
 	@GetMapping(value = "/{id}", consumes = { APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
@@ -51,6 +53,9 @@ public class ServidorController {
 	public ResponseEntity<Void> save(@RequestBody(required = false) Servidor servidor) {
 		List<Servidor> servidores = ptmc.consultarServidores();
 		service.saveAll(servidores);
+
+		System.out.println(servidor);
+		service.saveOrUpdate(servidor);
 		return new ResponseEntity<>(CREATED);
 	}
 

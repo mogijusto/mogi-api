@@ -30,8 +30,14 @@ public class ServidorService {
 		return repository.findAll();
 	}
 	
+	public List<Servidor> findAllLimit100First() {
+		return repository.findAllLimit100First();
+	}
+	
 	public void saveAll(List<Servidor> servidores) {
 		repository.saveAll(servidores);
 	}
+	
+	
 	
 }
