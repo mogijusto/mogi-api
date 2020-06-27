@@ -15,7 +15,7 @@ public class ServidorService {
 	private ServidorRepository repository;
 	
 	public void saveOrUpdate(Servidor servidor) {
-		repository.save(servidor);
+		repository.save(servidor); 
 	}
 
 	public Servidor findById(Long id) {
