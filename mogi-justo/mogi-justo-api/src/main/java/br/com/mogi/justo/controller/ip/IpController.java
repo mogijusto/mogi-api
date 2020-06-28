@@ -1,13 +1,11 @@
-package br.com.mogi.justo.controller.servidor;
+package br.com.mogi.justo.controller.ip;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,55 +20,48 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.mogi.justo.model.Servidor;
-import br.com.mogi.justo.robo.PortalTransparenciaMC;
-import br.com.mogi.justo.service.servidor.ServidorService;
+import br.com.mogi.justo.model.acesso.Ip;
+import br.com.mogi.justo.service.ip.IpService;
 
 @Controller
-@RequestMapping("/servidores")
-public class ServidorController {
-
+@RequestMapping("/v1/ip")
+public class IpController {
 	@Autowired
-	private ServidorService service;
+	private IpService service;
 
-	@Autowired
-	private PortalTransparenciaMC ptmc;
-
-	@CrossOrigin(origins = "http://localhost:8000")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(consumes = { APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<List<Servidor>> getAll() {
-		List<Servidor> servidores = service.findAll().stream().limit(500).collect(Collectors.toList());
-		Collections.shuffle(servidores);
-		return new ResponseEntity<>(servidores, OK);
+	public ResponseEntity<List<Ip>> pegar() {
+		return new ResponseEntity<>(service.findAll(), OK);
 	}
 
-	@CrossOrigin(origins = "http://localhost:8000")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "/{id}", consumes = { APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<Servidor> getOne(@PathVariable Long id) {
-		return new ResponseEntity<>(service.findById(id), OK); 
-	} 
+	public ResponseEntity<Ip> pegarUm(@PathVariable Long id) {
+		return new ResponseEntity<>(service.findOne(id), OK);
+	}
 
-	@PostMapping(produces = { APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE }, consumes = { APPLICATION_JSON_VALUE,
-			APPLICATION_XML_VALUE })
-	public ResponseEntity<Void> save(@RequestBody(required = false) Servidor servidor) {
-		List<Servidor> servidores = ptmc.consultarServidores();
-		service.saveAll(servidores);
+
+	@CrossOrigin(origins = "http://localhost:4200")
+	@PostMapping(produces = { APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE }, consumes = { APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE })
+	public ResponseEntity<Void> salvar(@RequestBody(required = false) Ip ip) {
+		service.saveOrUpdate(ip);
 		return new ResponseEntity<>(CREATED);
 	}
 
 	@PutMapping(value = "/{id}", produces = { APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE }, consumes = {
 			APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE })
-	public ResponseEntity<Void> update(@PathVariable String id, @RequestBody(required = false) Servidor servidor) {
-		servidor.setRgf(id);
-		service.saveOrUpdate(servidor);
+	public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody(required = false) Ip ip) {
+		ip.setId(id);
+		service.saveOrUpdate(ip);
 		return new ResponseEntity<>(CREATED);
 	}
 
 	@DeleteMapping(value = "/{id}", produces = { APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE }, consumes = {
 			APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE })
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
-		Servidor servidor = service.findById(id);
-		service.delete(servidor);
+		Ip ip = service.findOne(id);
+		service.delete(ip);
 		return new ResponseEntity<>(OK);
 	}
 }

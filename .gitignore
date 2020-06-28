@@ -12,3 +12,13 @@ mogi-justo/mogi-justo-model/.classpath
 mogi-justo/mogi-justo-repository/.classpath
 mogi-justo/mogi-justo-robo/.classpath
 mogi-justo/mogi-justo-service/.classpath
+*.component
+mogi-justo/mogi-justo-robo/.settings/org.eclipse.wst.common.project.facet.core.xml
+mogi-justo/mogi-justo-robo/.classpath
+mogi-justo/mogi-justo-robo/.project
+*.prefs
+mogi-justo/mogi-justo-robo/.settings/org.eclipse.wst.common.project.facet.core.xml
+mogi-justo/mogi-justo-robo/.settings/org.eclipse.wst.common.project.facet.core.xml
+mogi-justo/mogi-justo-robo/.settings/org.eclipse.jdt.core.prefs
+mogi-justo/mogi-justo-robo/.project
+mogi-justo/mogi-justo-robo/.classpath
