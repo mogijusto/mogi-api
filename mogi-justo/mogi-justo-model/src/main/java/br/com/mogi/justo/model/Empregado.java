@@ -8,6 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 public class Empregado {
 
@@ -26,15 +30,19 @@ public class Empregado {
 	private String rgf;
 
 	@OneToMany
+	@Cascade(CascadeType.ALL)
 	private List<Rendimento> rendimentos;
 
 	@OneToMany
+	@Cascade(CascadeType.ALL)
 	private List<Desconto> descontos;
 
 	@OneToMany
+	@Cascade(CascadeType.ALL)
 	private List<Total> totais;
 
 	@OneToMany
+	@Cascade(CascadeType.ALL)
 	private List<Outro> outros;
 
 	public String getReferencia() {
@@ -109,7 +117,16 @@ public class Empregado {
 		this.rgf = rgf;
 	}
 
+	public String getRgf() {
+		return rgf;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 }

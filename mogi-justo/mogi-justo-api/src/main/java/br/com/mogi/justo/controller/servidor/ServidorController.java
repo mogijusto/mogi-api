@@ -39,7 +39,9 @@ public class ServidorController {
 	@CrossOrigin(origins = "http://localhost:8000")
 	@GetMapping(consumes = { APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<List<Servidor>> getAll() {
-		return new ResponseEntity<>(service.findAllLimit100First().stream().distinct().limit(100).collect(Collectors.toList()), OK);
+		List<Servidor> servidores = service.findAll().stream().limit(500).collect(Collectors.toList());
+		Collections.shuffle(servidores);
+		return new ResponseEntity<>(servidores, OK);
 	}
 
 	@CrossOrigin(origins = "http://localhost:8000")
@@ -59,8 +61,6 @@ public class ServidorController {
 	@PutMapping(value = "/{id}", produces = { APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE }, consumes = {
 			APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE })
 	public ResponseEntity<Void> update(@PathVariable String id, @RequestBody(required = false) Servidor servidor) {
-		System.out.println(servidor);
-		System.out.println(id);
 		servidor.setRgf(id);
 		service.saveOrUpdate(servidor);
 		return new ResponseEntity<>(CREATED);
