@@ -10,7 +10,7 @@ import br.com.mogi.justo.repository.empregado.EmpregadoRepository;
 
 @Service
 public class EmpregadoService {
-	
+
 	@Autowired
 	private EmpregadoRepository repository;
 
@@ -28,5 +28,13 @@ public class EmpregadoService {
 
 	public List<Empregado> findAll() {
 		return repository.findAll();
+	}
+
+	public void saveMany(List<Empregado> empregados) {
+		repository.saveAll(empregados);
+	}
+
+	public Empregado findByRgf(String rgf) {
+		return repository.findByRgf(rgf);
 	}
 }

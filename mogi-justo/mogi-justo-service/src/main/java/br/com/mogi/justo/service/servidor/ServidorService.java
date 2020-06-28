@@ -15,11 +15,11 @@ public class ServidorService {
 	private ServidorRepository repository;
 	
 	public void saveOrUpdate(Servidor servidor) {
-		repository.save(servidor);
+		repository.save(servidor); 
 	}
 
-	public Servidor findById(String rgf) {
-		return repository.findById(rgf).orElse(null);
+	public Servidor findById(Long id) {
+		return repository.findById(id).orElse(null);
 	}
 
 	public void delete(Servidor servidor) {
@@ -29,5 +29,15 @@ public class ServidorService {
 	public List<Servidor> findAll() {
 		return repository.findAll();
 	}
+	
+	public List<Servidor> findAllLimit100First() {
+		return repository.findAllLimit100First();
+	}
+	
+	public void saveAll(List<Servidor> servidores) {
+		repository.saveAll(servidores);
+	}
+	
+	
 	
 }
