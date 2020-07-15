@@ -9,7 +9,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: postgres://mfrmahfqwipajx:34e5b925bc8c6c4536ba9fcd4b1a43cc9710c35c796f47ef856eb0f7c3fb93a7@ec2-3-216-129-140.compute-1.amazonaws.com:5432/de1irkngp027uk
+    url: ${JDBC_DATASOURCE_URL}
     username: mfrmahfqwipajx
     password: 34e5b925bc8c6c4536ba9fcd4b1a43cc9710c35c796f47ef856eb0f7c3fb93a7
   jpa:
